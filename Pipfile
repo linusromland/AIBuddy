@@ -4,7 +4,7 @@ verify_ssl = true
 name = "aibuddy"
 
 [scripts]
-start = "python3 src/main.py"
+start = "python src/main.py"
 
 [packages]
 "discord.py" = "*"
