@@ -1,5 +1,4 @@
 import os
-import discord
 from discord import Intents
 from discord.ext import commands
 
@@ -13,17 +12,25 @@ intents.presences = False
 
 bot = commands.Bot(command_prefix='!', intents=intents)
 
+
 @bot.event
 async def on_ready():
-    print(f'Logged in as {bot.user.name} (ID: {bot.user.id})')
+    print(
+        f"Logged in as {bot.user.name if bot.user else 'N/A'} (ID: {bot.user.id if bot.user else 'N/A'})")
+
 
 @bot.command()
 async def ping(ctx):
     await ctx.send('Pong!')
 
 
-async def main():
+def main():
+    if not DISCORD_TOKEN:
+        print('Please set the DISCORD_TOKEN environment variable.')
+        return
+
     bot.run(DISCORD_TOKEN)
+
 
 if __name__ == "__main__":
     main()
