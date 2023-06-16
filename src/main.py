@@ -1,3 +1,4 @@
+""" Main file for the bot. """
 import os
 from discord import Client, Intents,  Message, Object, app_commands
 from commands.index import register_commands
@@ -14,6 +15,8 @@ tree = app_commands.CommandTree(client)
 
 @client.event
 async def on_ready() -> None:
+    """ Log when the bot is ready. """
+
     await tree.sync(guild=Object(GUILD_ID if GUILD_ID else ""))
     print(
         f"Logged in as {client.user.name if client.user else 'N/A'} (ID: {client.user.id if client.user else 'N/A'})")
@@ -21,6 +24,7 @@ async def on_ready() -> None:
 
 @client.event
 async def on_message(message: Message) -> None:
+    """ Log all messages to the console. """
     print(f"{message.author}: {message.content}")
 
 # Register all commands
@@ -28,6 +32,7 @@ register_commands(tree)
 
 
 def main():
+    """ Main function. """
     if not DISCORD_TOKEN:
         print('Please set the DISCORD_TOKEN environment variable.')
         return

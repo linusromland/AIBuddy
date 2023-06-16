@@ -5,12 +5,14 @@ name = "aibuddy"
 
 [scripts]
 start = "python src/main.py"
+lint = "pylint src"
 
 [packages]
 "discord.py" = "*"
 discord = "*"
 
 [dev-packages]
+pylint = "*"
 
 [requires]
 python_version = "3.11"
