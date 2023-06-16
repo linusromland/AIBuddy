@@ -5,7 +5,7 @@ name = "aibuddy"
 
 [scripts]
 start = "python src/main.py"
-lint = "pylint src"
+lint = "pylint src --rcfile=.pylintrc"
 
 [packages]
 "discord.py" = "*"
