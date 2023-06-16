@@ -1,7 +1,8 @@
 """ Main file for the bot. """
 import os
 from discord import Client, Intents,  Message, Object, app_commands
-from commands.index import register_commands
+from commands import register_commands
+from database.connection import create_connection, create_tables
 
 DISCORD_TOKEN = os.getenv('DISCORD_TOKEN')
 GUILD_ID = os.getenv('GUILD_ID')
@@ -11,6 +12,8 @@ intents.message_content = True
 
 client = Client(intents=intents)
 tree = app_commands.CommandTree(client)
+
+conn = create_connection()
 
 
 @client.event
@@ -36,6 +39,8 @@ def main():
     if not DISCORD_TOKEN:
         print('Please set the DISCORD_TOKEN environment variable.')
         return
+
+    create_tables(conn)
 
     client.run(DISCORD_TOKEN)
 

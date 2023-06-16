@@ -16,6 +16,9 @@ AIBuddy: A friendly AI-based Discord bot that simulates a virtual server member,
 3. Run `pipenv install --dev` to install the required dependencies for development.
 4. Run `pipenv run start` to start the project.
 
+To automatically reload the project when changes are made, this could be achieved using [Nodemon](https://nodemon.io/). Have [Node.JS](https://nodejs.org/en/) and [NPM](https://www.npmjs.com/)
+installed on your system, and run `npx nodemon --exec pipenv run start` instead of `pipenv run start`. This will start the project using Nodemon, which will automatically reload the project when changes are made.
+
 ### VSCode Configuration
 
 If you're using Visual Studio Code and are encountering import errors, follow these steps:
