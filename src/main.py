@@ -1,11 +1,10 @@
 import os
-from discord import Client, Intents, Interaction, Message, Object, app_commands
+from discord import Client, Intents,  Message, Object, app_commands
+from commands.index import register_commands
 
-# Read your API keys from environment variables
 DISCORD_TOKEN = os.getenv('DISCORD_TOKEN')
 GUILD_ID = os.getenv('GUILD_ID')
 
-# Initialize your bot with the needed intents
 intents = Intents.default()
 intents.message_content = True
 
@@ -14,20 +13,18 @@ tree = app_commands.CommandTree(client)
 
 
 @client.event
-async def on_ready():
+async def on_ready() -> None:
     await tree.sync(guild=Object(GUILD_ID if GUILD_ID else ""))
     print(
         f"Logged in as {client.user.name if client.user else 'N/A'} (ID: {client.user.id if client.user else 'N/A'})")
 
 
 @client.event
-async def on_message(message: Message):
+async def on_message(message: Message) -> None:
     print(f"{message.author}: {message.content}")
 
-
-@tree.command(name="ping", description="Ping the bot", guild=Object(GUILD_ID) if GUILD_ID else None)
-async def ping(interaction: Interaction):
-    await interaction.response.send_message("Pong!")
+# Register all commands
+register_commands(tree)
 
 
 def main():
