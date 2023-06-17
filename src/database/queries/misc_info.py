@@ -1,9 +1,9 @@
-""" Database queries for Misc. Information table. """
+""" Database queries for miscellaneous Information table. """
 from sqlite3 import Connection
 
 
 def create_table(conn: Connection) -> None:
-    """ Create the Misc. Information table. """
+    """ Create the miscellaneous Information table. """
     print("Creating interests table if not exists...")
 
     conn.execute('''CREATE TABLE IF NOT EXISTS misc_information
@@ -33,3 +33,13 @@ def get_all_misc_info(conn: Connection) -> list[dict]:
     rows = cursor.fetchall()
 
     return [{"id": row[0], "info": row[1]} for row in rows]
+
+
+def misc_info_exists(conn: Connection, info_id: int) -> bool:
+    """ Check if an interest exists. """
+
+    cursor = conn.cursor()
+    cursor.execute("SELECT id FROM misc_information WHERE id=?", (info_id,))
+    row = cursor.fetchone()
+
+    return row is not None
