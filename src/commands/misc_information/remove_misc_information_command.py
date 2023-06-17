@@ -16,16 +16,16 @@ def setup(tree: app_commands.CommandTree, db_conn: Connection, guild_id: str | N
 
     @tree.command(
         name="remove_misc_information",
-        description="Remove a miscellaneous information entry.",
+        description="Remove a miscellaneous information entry. (Use list_misc_information to get the id)",
         guild=Object(guild_id) if guild_id else None,
     )
-    @app_commands.describe(misc_info_id="The id of the miscellaneous information you want to remove. (Use list_misc_information to get the id)")
-    async def _(interaction: Interaction, misc_info_id: str):
+    @app_commands.describe(misc_info_ids="The id of the miscellaneous information you want to remove. (Separate multiple ids with a semicolon(;))")
+    async def _(interaction: Interaction, misc_info_ids: str):
         """ Trigger the remove miscellaneous information command. """
-        await remove_misc_information(interaction, misc_info_id)
+        await remove_misc_information(interaction, misc_info_ids)
 
 
-async def remove_misc_information(interaction, misc_info_id: str | int):
+async def remove_misc_information(interaction, misc_info_ids: str):
     """ Remove miscellaneous information to the virtual member. """
 
     user_access = check_permission(conn, str(interaction.user.id), False)
@@ -35,19 +35,22 @@ async def remove_misc_information(interaction, misc_info_id: str | int):
             "You do not have permission to use this command.", ephemeral=True)
         return
 
-    try:
-        misc_info_id = int(misc_info_id)
-    except ValueError:
-        await interaction.response.send_message(
-            "The miscellaneous information id must be a number.", ephemeral=True)
-        return
+    split_misc_info_ids = misc_info_ids.split(";")
 
-    if not misc_info_exists(conn, int(misc_info_id)):
-        await interaction.response.send_message(
-            "The miscellaneous information id does not exist.", ephemeral=True)
-        return
+    for misc_info_id in split_misc_info_ids:
+        try:
+            misc_info_id = int(misc_info_id)
+        except ValueError:
+            await interaction.response.send_message(
+                "The miscellaneous information id must be a number.", ephemeral=True)
+            return
 
-    remove_misc_info(conn, int(misc_info_id))
+        if not misc_info_exists(conn, int(misc_info_id)):
+            await interaction.response.send_message(
+                "The miscellaneous information id does not exist.", ephemeral=True)
+            return
+
+        remove_misc_info(conn, int(misc_info_id))
 
     await interaction.response.send_message(
-        f"Removed miscellaneous information with id: {misc_info_id}", ephemeral=True)
+        f"Removed {len(split_misc_info_ids)} miscellaneous information(s).", ephemeral=True)

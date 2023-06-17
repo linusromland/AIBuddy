@@ -19,7 +19,7 @@ def setup(tree: app_commands.CommandTree, db_conn: Connection, guild_id: str | N
         description="Add miscellaneous information that does not fit into the general information.",
         guild=Object(guild_id) if guild_id else None,
     )
-    @app_commands.describe(information="The information you want to add.")
+    @app_commands.describe(information="The information you want to add. (Separate multiple information with a semicolon(;))")
     async def _(interaction: Interaction, information: str):
         """ Trigger the add misc information command. """
         await add_misc_information(interaction, information)
@@ -35,7 +35,10 @@ async def add_misc_information(interaction, information: str):
             "You do not have permission to use this command.", ephemeral=True)
         return
 
-    add_misc_info(conn, information)
+    split_information = information.split(";")
+
+    for info in split_information:
+        add_misc_info(conn, info)
 
     await interaction.response.send_message(
-        f"Added miscellaneous information: {information}", ephemeral=True)
+        f"Added {len(split_information)} information(s).", ephemeral=True)
