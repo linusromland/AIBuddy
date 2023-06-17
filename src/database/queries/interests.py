@@ -4,6 +4,7 @@ from sqlite3 import Connection
 
 def create_table(conn: Connection) -> None:
     """ Create the interests table. """
+    print("Creating interests table if not exists...")
 
     conn.execute('''CREATE TABLE IF NOT EXISTS interests
                     (id INTEGER PRIMARY KEY, interest TEXT)''')
