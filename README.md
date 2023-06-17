@@ -69,7 +69,7 @@ Remember to use double backslashes (`\\`) in path strings within the JSON file o
 
 ## Environment Variables
 
-To run the project, you must create a `.env` file in your project root directory if you're running the project locally. For Docker, you must set the environment variables in the Docker container. The required environment variables are:
+To run the project, you must create a `.env` file in your project root directory if you're running the project locally. For Docker, you must set the environment variables in the Docker container. The environment variables are:
 
 | Variable Name           | Description                    | Required |
 | ----------------------- | ------------------------------ | -------- |
