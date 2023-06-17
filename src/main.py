@@ -6,7 +6,7 @@ from handlers import register_handlers
 from database.connection import create_connection, create_tables
 
 DISCORD_TOKEN = os.getenv('DISCORD_TOKEN')
-GUILD_ID = os.getenv('GUILD_ID')
+GUILD_ID = os.getenv('DISCORD_SERVER_GUILD_ID')
 
 intents = Intents.default()
 intents.message_content = True

@@ -7,7 +7,7 @@ from commands.general_information import register_commands as register_general_i
 from commands.misc_information import register_commands as register_misc_information_commands
 from commands.permisson_command import setup as permisson_setup
 
-GUILD_ID = os.getenv("GUILD_ID")
+GUILD_ID = os.getenv("DISCORD_SERVER_GUILD_ID")
 
 
 async def register_commands(tree: app_commands.CommandTree, conn: Connection) -> None:
