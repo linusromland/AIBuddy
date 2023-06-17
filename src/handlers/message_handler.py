@@ -29,4 +29,4 @@ async def handle_on_message(message: Message, client: Client):
 
     # Answer if the bot is mentioned or with a 1/15 chance
     if client.user in message.mentions or randint(1, 15) == 1:
-        return await answer_message(message,  conn)
+        return await answer_message(message, client, conn)
