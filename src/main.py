@@ -2,6 +2,7 @@
 import os
 from discord import Client, Intents, app_commands
 from commands import register_commands
+from handlers import register_handlers
 from database.connection import create_connection, create_tables
 
 DISCORD_TOKEN = os.getenv('DISCORD_TOKEN')
@@ -22,6 +23,9 @@ async def on_ready() -> None:
     """ Log when the bot is ready. """
     # Register all commands
     await register_commands(tree, conn)
+
+    # Register all handlers
+    await register_handlers(client)
 
     print(
         f"Logged in as {client.user.name if client.user else 'N/A'} (ID: {client.user.id if client.user else 'N/A'})")
