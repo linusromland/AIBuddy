@@ -32,20 +32,22 @@ async def answer_message(message: Message, client: Client, conn: Connection):
     system_prompt += "Anything that you do not know you make up. Do not repeat yourself. You will now start to answer the messages of the other members."
 
     prompt = [
-        {
-            "role": "system",
-            "content": system_prompt
-        }
     ]
 
-    # TODO: FIX SO THE MESSAGES ARE IN THE RIGHT ORDER
-    async for previous_message in message.channel.history():
-        prompt.append({
-            "role": "assistant" if previous_message.author == client.user else "user",
-            "content": previous_message.content
+    async for previous_message in message.channel.history(limit=10):
+        user = client.get_user(previous_message.author.id)
+        bot_message = previous_message.author == client.user
+
+        prompt.insert(0, {
+            "role": "assistant" if bot_message else "user",
+            "content": ((user.name + ": ") if user and not bot_message else "") + previous_message.content
         })
 
-    print(prompt)
+    prompt.insert(0, {
+        "role": "system",
+        "content": system_prompt
+    }
+    )
 
     # Make call to OpenAI here
     response = generate_response(prompt)
