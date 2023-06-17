@@ -20,12 +20,12 @@ def setup(tree: app_commands.CommandTree, db_conn: Connection, guild_id: str | N
         guild=Object(guild_id) if guild_id else None,
     )
     async def _(interaction: Interaction):
-        """ Trigger the list misc information command. """
+        """ Trigger the list miscellaneous information command. """
         await list_misc_information(interaction)
 
 
 async def list_misc_information(interaction):
-    """ List misc information to the virtual member. """
+    """ List miscellaneous information to the virtual member. """
 
     user_access = check_permission(conn, str(interaction.user.id), False)
 
@@ -41,7 +41,7 @@ async def list_misc_information(interaction):
             "No miscellaneous information found.", ephemeral=True)
         return
 
-    embed = Embed(title="miscellaneous Information", color=0x00ff00)
+    embed = Embed(title="Miscellaneous Information", color=0x00ff00)
     for info in misc_info:
         embed.add_field(name=info["id"],
                         value=info["info"], inline=False)

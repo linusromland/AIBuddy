@@ -20,12 +20,12 @@ def setup(tree: app_commands.CommandTree, db_conn: Connection, guild_id: str | N
         guild=Object(guild_id) if guild_id else None,
     )
     async def _(interaction: Interaction):
-        """ Trigger the permisson command. """
+        """ Trigger the get general information command. """
         await get_general_information(interaction)
 
 
 async def get_general_information(interaction):
-    """ Retrieve the permission level of a user. """
+    """ Get general information of the virtual member. """
 
     user_access = check_permission(conn, str(interaction.user.id), False)
 

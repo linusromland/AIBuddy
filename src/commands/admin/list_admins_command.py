@@ -26,7 +26,7 @@ def setup(tree: app_commands.CommandTree, db_conn: Connection, guild_id: str | N
 
 
 async def list_admins(interaction):
-    """ Retrieve the permission level of a user. """
+    """ Retrieve the permission level of all users. """
 
     user_access = check_permission(conn, str(interaction.user.id), False)
 

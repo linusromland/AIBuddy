@@ -1,4 +1,4 @@
-""" Add remove. information command """
+""" Remove miscellaneous information command """
 
 from sqlite3 import Connection
 from discord import Interaction, Object, app_commands
@@ -21,12 +21,12 @@ def setup(tree: app_commands.CommandTree, db_conn: Connection, guild_id: str | N
     )
     @app_commands.describe(misc_info_id="The id of the miscellaneous information you want to remove. (Use list_misc_information to get the id)")
     async def _(interaction: Interaction, misc_info_id: str):
-        """ Trigger the remove misc information command. """
+        """ Trigger the remove miscellaneous information command. """
         await remove_misc_information(interaction, misc_info_id)
 
 
 async def remove_misc_information(interaction, misc_info_id: str | int):
-    """ Remove misc information to the virtual member. """
+    """ Remove miscellaneous information to the virtual member. """
 
     user_access = check_permission(conn, str(interaction.user.id), False)
 

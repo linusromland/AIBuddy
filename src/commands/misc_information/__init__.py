@@ -1,4 +1,4 @@
-""" Index file for general info commands. """
+""" Index file for miscellaneous info commands. """
 import os
 from sqlite3 import Connection
 from discord import app_commands

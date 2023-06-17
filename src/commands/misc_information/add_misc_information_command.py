@@ -26,7 +26,7 @@ def setup(tree: app_commands.CommandTree, db_conn: Connection, guild_id: str | N
 
 
 async def add_misc_information(interaction, information: str):
-    """ Add misc information to the virtual member. """
+    """ Add miscellaneous information to the virtual member. """
 
     user_access = check_permission(conn, str(interaction.user.id), False)
 
