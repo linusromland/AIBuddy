@@ -14,9 +14,8 @@ def setup(tree: app_commands.CommandTree, db_conn: Connection, guild_id: str | N
     global conn
     conn = db_conn
 
-    # command with a optional parameter to send in a user tag
     @tree.command(
-        name="permisson",
+        name="check_permisson",
         description="Get the permission level of a user.",
         guild=Object(guild_id) if guild_id else None,
     )

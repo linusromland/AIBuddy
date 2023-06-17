@@ -8,12 +8,12 @@ def check_permission(conn: Connection, discord_id: str, full_admin: bool) -> boo
     admins = get_all_admins(conn)
 
     if len(admins) == 0:
-        add_admin(conn, discord_id, 2)
+        add_admin(conn, discord_id, 3)
         return True
 
     admin = next(
         (admin for admin in admins if admin["discord_id"] == discord_id), None)
 
     if admin:
-        return admin["permission_level"] == 2 if full_admin else admin["permission_level"] >= 1
+        return admin["permission_level"] >= 2 if full_admin else admin["permission_level"] >= 1
     return False
