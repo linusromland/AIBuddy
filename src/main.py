@@ -9,6 +9,7 @@ GUILD_ID = os.getenv('GUILD_ID')
 
 intents = Intents.default()
 intents.message_content = True
+intents.members = True
 
 client = Client(intents=intents)
 tree = app_commands.CommandTree(client)
