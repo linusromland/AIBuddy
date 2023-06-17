@@ -1,15 +1,23 @@
 # AIBuddy
 
-AIBuddy: A friendly AI-based Discord bot that simulates a virtual server member, engaging in conversations and bringing a unique, interactive experience to your server.
+AIBuddy is an AI-based Discord bot designed to enrich the user experience in your Discord server by simulating a virtual member who can actively engage in conversations. The primary objective of creating AIBuddy is to make your server more lively, unique, and interactive by using state-of-the-art AI algorithms. This project is open to collaboration; feel free to contribute and make it even better!
 
-## Project Setup for Local Development
+## Table of Contents
 
-### Prerequisites
+-   [Prerequisites](#prerequisites)
+-   [Setup and Running the Project](#setup-and-running-the-project)
+-   [VSCode Configuration](#vscode-configuration)
+-   [Environment Variables](#environment-variables)
+-   [Running the Project using Docker Compose](#running-the-project-using-docker-compose)
+-   [Collaboration](#collaboration)
+-   [License](#license)
+
+## Prerequisites
 
 1. Install [Pipenv](https://pipenv.pypa.io/en/latest/installation/) on your system.
-2. (Optional) If using Visual Studio Code (VSCode) and encountering import errors, set up the interpreter and extra paths in your `settings.json` file. Read the **VSCode Configuration** section below for more information.
+2. (Optional) If using Visual Studio Code (VSCode) and encountering import errors, set up the interpreter and extra paths in your `settings.json` file. Read the [**VSCode Configuration**](#vscode-configuration) section below for more information.
 
-### Setup and Running the Project
+## Setup and Running the Project
 
 1. Clone the project repository locally.
 2. In a terminal, navigate to your project folder.
@@ -19,7 +27,7 @@ AIBuddy: A friendly AI-based Discord bot that simulates a virtual server member,
 To automatically reload the project when changes are made, this could be achieved using [Nodemon](https://nodemon.io/). Have [Node.JS](https://nodejs.org/en/) and [NPM](https://www.npmjs.com/)
 installed on your system, and run `npx nodemon --watch src --ext py --exec pipenv run start` instead of `pipenv run start`. This will start the project using Nodemon, which will automatically reload the project when changes are made.
 
-### VSCode Configuration
+## VSCode Configuration
 
 If you're using Visual Studio Code and are encountering import errors, follow these steps:
 
@@ -59,7 +67,23 @@ For example (paths shown are for Windows, use single forward slashes `/` on Unix
 
 Remember to use double backslashes (`\\`) in path strings within the JSON file on Windows, and single forward slashes (`/`) on Unix-based systems.
 
-### Running the Project using Docker Compose
+## Environment Variables
+
+To run the project, you must create a `.env` file in your project root directory if you're running the project locally. For Docker, you must set the environment variables in the Docker container. The required environment variables are:
+
+| Variable Name           | Description                    | Required |
+| ----------------------- | ------------------------------ | -------- |
+| DISCORD_TOKEN           | Your Discord bot token         | Yes      |
+| DISCORD_SERVER_GUILD_ID | Your Discord server's guild ID | No       |
+| OPENAI_API_KEY          | Your OpenAI API key            | Yes      |
+
+To create a Discord bot and get the `DISCORD_TOKEN`, follow this tutorial: [How to create a bot for your Discord server](https://www.writebots.com/discord-bot-token/)
+
+To obtain the `DISCORD_SERVER_GUILD_ID`, follow this tutorial: [How to get your Discord Server ID](https://support.discord.com/hc/en-us/articles/206346498-Where-can-I-find-my-User-Server-Message-ID-)
+
+To obtain the `OPENAI_API_KEY`, sign up for an [OpenAI](https://beta.openai.com/signup/) account. Once you've signed up, you can find your API key in the [Settings](https://beta.openai.com/account/api-keys) page.
+
+## Running the Project using Docker Compose
 
 #### Prerequisites
 
@@ -72,3 +96,11 @@ docker-compose up
 ```
 
 This will start the project using the production settings defined in the `docker-compose.yml` file.
+
+## Collaboration
+
+This project is open to collaboration; everyone is encouraged to contribute and improve the AIBuddy experience. If you have any suggestions, feature requests, or want to help with the overall development process, feel free to open new issues or submit pull requests.
+
+## License
+
+AIBuddy is licensed under the [MIT License](https://opensource.org/licenses/MIT), meaning you're free to use, modify, and distribute the project, as long as the copyright notice and the permission notice are included.
