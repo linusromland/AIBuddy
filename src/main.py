@@ -1,6 +1,6 @@
 """ Main file for the bot. """
 import os
-from discord import Client, Intents,  Message, Object, app_commands
+from discord import Client, Intents, app_commands
 from commands import register_commands
 from database.connection import create_connection, create_tables
 
@@ -24,12 +24,6 @@ async def on_ready() -> None:
 
     print(
         f"Logged in as {client.user.name if client.user else 'N/A'} (ID: {client.user.id if client.user else 'N/A'})")
-
-
-@client.event
-async def on_message(message: Message) -> None:
-    """ Log all messages to the console. """
-    print(f"{message.author}: {message.content}")
 
 
 def main():
