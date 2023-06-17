@@ -2,20 +2,18 @@
 import os
 from sqlite3 import Connection
 from discord import Object, app_commands
-from commands.add_admin_command import setup as add_admin_setup
-from commands.list_admins_command import setup as list_admins_setup
+from commands.admin import register_commands as register_admin_commands
+from commands.general_information import register_commands as register_general_information_commands
 from commands.permisson_command import setup as permisson_setup
-from commands.remove_admin_command import setup as remove_admin_setup
 
 GUILD_ID = os.getenv("GUILD_ID")
 
 
 async def register_commands(tree: app_commands.CommandTree, conn: Connection) -> None:
     """ Register all commands. """
-    add_admin_setup(tree, conn, GUILD_ID)
-    list_admins_setup(tree, conn, GUILD_ID)
+    register_admin_commands(tree, conn, GUILD_ID)
+    register_general_information_commands(tree, conn, GUILD_ID)
     permisson_setup(tree, conn, GUILD_ID)
-    remove_admin_setup(tree, conn, GUILD_ID)
 
     # Sync the commands with the Discord API
-    await tree.sync(guild=Object(GUILD_ID if GUILD_ID else ""))
+    await tree.sync(guild=Object(GUILD_ID) if GUILD_ID else None)

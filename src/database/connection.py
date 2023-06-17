@@ -4,8 +4,8 @@ import os
 import sqlite3
 from sqlite3 import Connection
 from database.queries.admin import create_table as create_admin_table
-from database.queries.information import create_table as create_information_table
-from database.queries.interests import create_table as create_interests_table
+from database.queries.general_info import create_table as create_information_table
+from database.queries.misc_info import create_table as create_misc_table
 
 
 DB_PATH = os.getenv("DB_PATH", "aibuddy")
@@ -22,5 +22,5 @@ def create_tables(conn: Connection) -> None:
     print("Setting up database...")
     create_admin_table(conn)
     create_information_table(conn)
-    create_interests_table(conn)
+    create_misc_table(conn)
     print("Database setup complete.")
