@@ -25,7 +25,7 @@ async def on_ready() -> None:
     await register_commands(tree, conn)
 
     # Register all handlers
-    await register_handlers(client)
+    await register_handlers(client, conn)
 
     print(
         f"Logged in as {client.user.name if client.user else 'N/A'} (ID: {client.user.id if client.user else 'N/A'})")

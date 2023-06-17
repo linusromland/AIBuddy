@@ -10,6 +10,7 @@ lint = "pylint src --rcfile=.pylintrc"
 [packages]
 "discord.py" = "*"
 discord = "*"
+openai = "*"
 
 [dev-packages]
 pylint = "*"
