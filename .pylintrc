@@ -3,3 +3,4 @@ max-line-length=120
 
 [MESSAGES CONTROL]
 disable=import-error
+disable=global-statement

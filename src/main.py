@@ -19,8 +19,9 @@ conn = create_connection()
 @client.event
 async def on_ready() -> None:
     """ Log when the bot is ready. """
+    # Register all commands
+    await register_commands(tree, conn)
 
-    await tree.sync(guild=Object(GUILD_ID if GUILD_ID else ""))
     print(
         f"Logged in as {client.user.name if client.user else 'N/A'} (ID: {client.user.id if client.user else 'N/A'})")
 
@@ -29,9 +30,6 @@ async def on_ready() -> None:
 async def on_message(message: Message) -> None:
     """ Log all messages to the console. """
     print(f"{message.author}: {message.content}")
-
-# Register all commands
-register_commands(tree)
 
 
 def main():

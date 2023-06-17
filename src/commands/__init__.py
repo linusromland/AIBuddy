@@ -1,11 +1,15 @@
 """ Index file for commands. """
 import os
-from discord import app_commands
-from .ping_command import setup as ping_setup
+from sqlite3 import Connection
+from discord import Object, app_commands
+from commands.permisson_command import setup as permisson_setup
 
 GUILD_ID = os.getenv("GUILD_ID")
 
 
-def register_commands(tree: app_commands.CommandTree) -> None:
+async def register_commands(tree: app_commands.CommandTree, conn: Connection) -> None:
     """ Register all commands. """
-    ping_setup(tree, GUILD_ID)
+    permisson_setup(tree, conn, GUILD_ID)
+
+    # Sync the commands with the Discord API
+    await tree.sync(guild=Object(GUILD_ID if GUILD_ID else ""))
