@@ -1,6 +1,5 @@
 [FORMAT]
-max-line-length=120
+max-line-length=160
 
 [MESSAGES CONTROL]
-disable=import-error
-disable=global-statement
+disable=import-error,global-statement

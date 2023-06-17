@@ -30,9 +30,9 @@ async def permisson(interaction, user: User):
     """ Retrieve the permission level of a user. """
     admins = get_all_admins(conn)
 
-    permisson = check_permission(conn, str(interaction.user.id), False)
+    user_access = check_permission(conn, str(interaction.user.id), False)
 
-    if not permisson and interaction.user.id != interaction.guild.owner_id:
+    if not user_access and interaction.user.id != interaction.guild.owner_id:
         await interaction.response.send_message(
             "You do not have permission to use this command.", ephemeral=True)
         return
