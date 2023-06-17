@@ -28,7 +28,7 @@ def setup(tree: app_commands.CommandTree, db_conn: Connection, guild_id: str | N
     @app_commands.describe(user="The user to add as an admin.")
     @app_commands.describe(permisson="The permisson level of the user.")
     async def _(interaction: Interaction, user: User, permisson: AdminPermissons):
-        """ Trigger the permisson command. """
+        """ Trigger the add admin command. """
         await add_admin(interaction, user, permisson)
 
 
