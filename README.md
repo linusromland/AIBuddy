@@ -17,7 +17,7 @@ AIBuddy: A friendly AI-based Discord bot that simulates a virtual server member,
 4. Run `pipenv run start` to start the project.
 
 To automatically reload the project when changes are made, this could be achieved using [Nodemon](https://nodemon.io/). Have [Node.JS](https://nodejs.org/en/) and [NPM](https://www.npmjs.com/)
-installed on your system, and run `npx nodemon --exec pipenv run start` instead of `pipenv run start`. This will start the project using Nodemon, which will automatically reload the project when changes are made.
+installed on your system, and run `npx nodemon --watch src --ext py --exec pipenv run start` instead of `pipenv run start`. This will start the project using Nodemon, which will automatically reload the project when changes are made.
 
 ### VSCode Configuration
 
