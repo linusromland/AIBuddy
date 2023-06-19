@@ -10,7 +10,7 @@ def generate_response(prompt: List[Dict[str, str]]) -> str:
     """ Generate text using the OpenAI API. """
 
     response = openai.ChatCompletion.create(
-        model="gpt-3.5-turbo",
+        model="gpt-3.5-turbo-0613",
         messages=prompt,
     )
 
