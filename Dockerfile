@@ -10,7 +10,7 @@ COPY . .
 RUN pip install pipenv
 
 # Install dependencies
-RUN pipenv install 
+RUN pipenv install --system --deploy --ignore-pipfile
 
 CMD [ "pipenv", "run", "start" ]
 
