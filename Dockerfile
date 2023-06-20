@@ -10,7 +10,7 @@ COPY . .
 RUN pip install pipenv
 
 # Install dependencies
-RUN pipenv install --system --deploy --ignore-pipfile
+RUN pipenv install --system
 
-CMD [ "pipenv", "run", "start" ]
+CMD [ "python3", "./src/main.py" ]
 
